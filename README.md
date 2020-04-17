@@ -6,7 +6,6 @@
 运行build_kg.py根据kgdata文件夹生成KG
 
 # QGKG
-基于知识图谱的问答+echarts展示图谱
 
 环境：python3.6/7
 
