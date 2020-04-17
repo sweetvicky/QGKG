@@ -1,0 +1,804 @@
+疾病, 药物, 症状, 程度, 频率, 时间, 肯定或否定
+
+#### 第一阶段性的问题，Robot只能进行3轮次的交互 #######
+
+用户:我最近总是有睡眠障碍的问题,睡不着觉.
+preques_type: new_symptom, question_types: new_symptom.
+ROBOT: 你的爱好有没有明显的变化？
+用户:什么意思,应该还好吧。
+preques_type: new_symptom, question_types: spec_symtom.
+ROBOT: 譬如,有没有喜欢的事情失去愉悦感, 等这样的症状？
+用户:嗯，最近经常
+preques_type: spec_symtom, question_types: new_symtom.
+ROBOT: 还有其他症状需要说明吗？
+用户:
+
+问题：字符串匹配的问题
+
+解决方案：代码问题，已经解决。
+
+===========================================================
+
+用户:我最近总是有睡眠障碍的问题,睡不着觉.
+preques_type: new_symptom, question_types: new_symptom.
+ROBOT: 了解了,然后你的爱好有没有明显的变化？
+用户:什么意思,应该还好吧。
+preques_type: new_symptom, question_types: spec_symptom.
+ROBOT: 详细来说,有没有喜欢的事情失去愉悦感, 等这样的症状？
+用户:嗯，最近经常
+preques_type: spec_symptom, question_types: new_symptom.
+ROBOT: 好的那么你最近的体重怎么样呢？
+用户:最近两周我的体重下降了很多，不怎么吃得下饭
+preques_type: new_symptom, question_types: new_symptom.
+ROBOT: 好的那么你的食欲有没有明显的变化？
+用户:食欲减退了
+preques_type: new_symptom, question_types: ques_degree.
+ROBOT: 情况是持续性的吗，是几乎每天都这样吗？
+用户:是的
+preques_type: ques_degree, question_types: new_symptom.
+ROBOT: 了解了,然后你最近的睡眠怎么样呢？
+用户:还行,没有什么异常
+preques_type: new_symptom, question_types: spec_symptom.
+ROBOT: 也就是,有没有入睡难,易醒,早醒,嗜睡, 等这样的症状？
+用户:没有
+preques_type: spec_symptom, question_types: new_symptom.
+ROBOT: 嗯嗯,明白了.你的运动状态还好吗？
+用户:嗯,应该还不错吧
+preques_type: new_symptom, question_types: spec_symptom.
+ROBOT: 就像是,有没有说话、行动缓慢, 等这样的症状？
+用户:没有的
+preques_type: spec_symptom, question_types: new_symptom.
+ROBOT: 了解了,然后你的行为动作状态还好吗？
+用户:嗯，感觉没有奇怪的地方
+preques_type: new_symptom, question_types: spec_symptom.
+ROBOT: 也就是,有没有行为易怒易烦躁, 等这样的症状？
+用户:
+
+=========================================================
+
+20.1.2 测试结果
+用户:>? 我最近总是有睡眠障碍的问题,睡不着觉.
+preques_type: new_symptom, question_types: new_symptom.
+ROBOT: 好的,那么你最近的情绪怎么样呢？
+用户:>? 应该还好
+preques_type: spec_symptom, question_types: spec_symptom.
+ROBOT: 比如说,会不会时常感觉哭泣、心情不好？
+用户:>? 嗯，最近经常
+
+
+20.4.1测试结果
+
+用户: 我最近总是有睡眠障碍的问题,睡不着觉.
+preques_type: new_symptom, question_types: new_symptom.
+ROBOT: 这样的话,会不会觉得心情？
+用户: 应该还好
+preques_type: spec_symptom, question_types: spec_symptom.
+ROBOT: 例如,有心情不好、哭泣等类似的感觉？
+用户: 嗯，最近经常
+preques_type: spec_symptom, question_types: new_symptom.
+ROBOT: 嗯嗯,明白了.现在还对你以前的爱好感兴趣吗？
+用户: 我现在总是会有兴趣减退的情况
+preques_type: new_symptom, question_types: new_symptom.
+ROBOT: 嗯嗯,明白了.你在精神时有什么异常表现吗？
+用户: 嗯，应该没有
+preques_type: spec_symptom, question_types: spec_symptom.
+ROBOT: 就像,有没有无精打采、能力下降、精力减退, 等这样的症状？
+用户: 嗯嗯，会有的
+preques_type: spec_symptom, question_types: new_symptom.
+ROBOT: 这样的话,你最近的注意力怎么样呢？
+用户: 还好，工作的时候具有注意力挺困难的
+preques_type: ques_degree, question_types: ques_degree.
+ROBOT: 情况是持续性的吗，是几乎每天都这样吗？
+用户: 嗯嗯，差不多是的
+preques_type: ques_degree, question_types: new_symptom.
+ROBOT: 好的,那么你的自信力有没有明显的变化？
+用户: 还行，我就是不敢在生人面前表现自己
+preques_type: ques_degree, question_types: ques_degree.
+ROBOT: 请问这个症状是反复的吗？
+用户: 应该没有
+preques_type: ques_degree, question_types: new_symptom.
+ROBOT: 这样的话,感觉自己的生活意义方面最近怎样了？
+用户: 没有特别思考过
+preques_type: ques_degree, question_types: ques_degree.
+ROBOT: 请问这个症状是反复的吗？
+用户: 不是，没有这个症状
+preques_type: ques_degree, question_types: new_symptom.
+ROBOT: 好的,那么会产生想象未来计划的想法吗？
+用户: 没有
+preques_type: spec_symptom, question_types: spec_symptom.
+ROBOT: 就是说,有前途悲观、前途暗淡等类似的感觉？
+用户: 没有过这样子的想法
+preques_type: spec_symptom, question_types: new_symptom.
+ROBOT: 了解了,然后会不会觉得自杀？
+用户: 应该是不会的
+preques_type: spec_symptom, question_types: spec_symptom.
+ROBOT: 就像是,有自杀行为、反复出现自杀想法、反复出现想死、自杀未遂等类似的感觉？
+用户: 没有的
+preques_type: spec_symptom, question_types: new_symptom.
+ROBOT: 嗯嗯,明白了.你在食欲时有什么异常表现吗？
+用户: 还行，正常
+preques_type: new_symptom, question_types: new_symptom.
+ROBOT: 好滴,我们已经初步了解了你的情况，初步诊断请稍后......
+
+
+20.4.7测试结果
+电子医生:你可以先简单陈述你的情况。
+用户:我最近总是睡不着觉
+[('我', 'O'), ('最', 'O'), ('近', 'O'), ('总', 'O'), ('是', 'O'), ('睡', 'O'), ('不', 'O'), ('着', 'O'), ('觉', 'B-sym')]
+ner_result: []
+diags:{'time': '最近', 'frequent': '总是', 'symptom': '情绪低落'}
+words:{'syms_score': [], 'symptoms': ['情绪低落'], 'other_words': [{'最近': ['time_recent']}, {'总是': ['frequency_high']}, {}]}
+电子医生: 嗯,好的.那现在还对你以前的爱好感兴趣吗？
+用户:还行，一般吧
+[('还', 'O'), ('行', 'O'), ('，', 'O'), ('一', 'O'), ('般', 'O'), ('吧', 'O')]
+ner_result: []
+电子医生: 好比说,有没有失去愉快感、兴趣下降、不能从平日活动中获得乐趣、失去兴趣, 等这样的症状？
+用户:嗯嗯，还可以
+[('嗯', 'O'), ('嗯', 'O'), ('，', 'O'), ('还', 'O'), ('可', 'O'), ('以', 'O')]
+ner_result: []
+diags:{'degree': '还行', 'symptom': '兴趣减退', 'sub_symptom': ['失去愉快感', '兴趣下降', '不能从平日活动中获得乐趣', '失去兴趣'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['兴趣减退'], 'other_words': [{'最近': ['time_recent']}, {'反复': ['frequency_high']}, {}]}
+电子医生: 那你的精力有没有明显的变化？
+用户:有的吧
+[('有', 'O'), ('的', 'O'), ('吧', 'O')]
+ner_result: []
+电子医生: 比如说,有没有能力下降、精力减退、疲乏无力, 等这样的症状？
+用户:嗯嗯，近期老是感觉很乏味
+[('嗯', 'O'), ('嗯', 'O'), ('，', 'O'), ('近', 'O'), ('期', 'O'), ('老', 'O'), ('是', 'O'), ('感', 'B-sym'), ('觉', 'E-sym'), ('很', 'O'), ('乏', 'O'), ('味', 'O')]
+ner_result: []
+diags:{'symptom': '精力丧失', 'sub_symptom': ['能力下降', '精力减退', '疲乏无力'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['精力丧失'], 'other_words': [{'最近': ['time_recent']}, {'反复': ['frequency_high']}, {'近': ['degree_deep'], '很': ['degree_deep']}]}
+电子医生: 这样的话,你的决断能力有没有明显的变化？
+用户:有的吧
+[('有', 'O'), ('的', 'O'), ('吧', 'O')]
+ner_result: []
+电子医生: 好比说,有没有犹豫不决、思维缓慢, 等这样的症状？
+用户:嗯嗯，有时候会有这样的感觉
+[('嗯', 'O'), ('嗯', 'O'), ('，', 'O'), ('有', 'O'), ('时', 'O'), ('候', 'O'), ('会', 'O'), ('有', 'O'), ('这', 'O'), ('样', 'O'), ('的', 'O'), ('感', 'B-sym'), ('觉', 'E-sym')]
+ner_result: []
+diags:{'symptom': '注意力降低', 'sub_symptom': ['犹豫不决', '思维缓慢'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['注意力降低'], 'other_words': [{'最近': ['time_recent']}, {'有时候': ['frequency_low'], '反复': ['frequency_high']}, {}]}
+电子医生: 那你在信心时有什么异常表现吗？
+用户:没有什么感觉
+[('没', 'O'), ('有', 'O'), ('什', 'O'), ('么', 'O'), ('感', 'B-sym'), ('觉', 'E-sym')]
+ner_result: []
+电子医生: 就像,经常有自我评价降低、自我评价低、自卑等类似的想法？
+用户:不会有的
+[('不', 'O'), ('会', 'O'), ('有', 'O'), ('的', 'O')]
+ner_result: []
+diags:{'symptom': '自信心丧失', 'sub_symptom': ['自我评价降低', '自我评价低', '自卑'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['自信心丧失'], 'other_words': [{'最近': ['time_recent']}, {'反复': ['frequency_high']}, {}]}
+电子医生: 这样的话,感觉自己的价值观念方面最近怎样了？
+用户:一般吧
+[('一', 'O'), ('般', 'O'), ('吧', 'O')]
+ner_result: []
+电子医生: 就像,有过分和不适当的罪恶感、自责、否定自我、认为拖累别人等类似的感觉？
+用户:没有这样的感觉
+[('没', 'O'), ('有', 'O'), ('这', 'O'), ('样', 'O'), ('的', 'O'), ('感', 'B-sym'), ('觉', 'E-sym')]
+ner_result: []
+diags:{'degree': '一般', 'symptom': '自责自罪', 'sub_symptom': ['过分和不适当的罪恶感', '自责', '否定自我', '认为拖累别人'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['自责自罪'], 'other_words': [{'最近': ['time_recent']}, {'反复': ['frequency_high']}, {}]}
+电子医生: 了解了,然后试图思考自己的前途过吗？
+用户:没怎么想过
+[('没', 'O'), ('怎', 'O'), ('么', 'O'), ('想', 'S-sym'), ('过', 'O')]
+ner_result: []
+电子医生: 譬如,有前途悲观、前途暗淡等类似的感觉？
+用户:现在没有呀
+[('现', 'O'), ('在', 'O'), ('没', 'O'), ('有', 'O'), ('呀', 'O')]
+ner_result: []
+diags:{'degree': '过', 'symptom': '前途问题', 'sub_symptom': ['前途悲观', '前途暗淡'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['前途问题'], 'other_words': [{'现在': ['time_recent'], '最近': ['time_recent']}, {'反复': ['frequency_high']}, {}]}
+电子医生: 了解了,然后会产生希望自己死掉的想法吗？
+用户:不会
+[('不', 'O'), ('会', 'O')]
+ner_result: []
+电子医生: 详细来说就是,有自杀行为、反复出现想死、反复出现自杀想法、想要自残等类似的感觉？
+用户:偶尔会有
+[('偶', 'O'), ('尔', 'O'), ('会', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'symptom': '自杀', 'sub_symptom': ['自杀行为', '反复出现想死', '反复出现自杀想法', '想要自残'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['自杀'], 'other_words': [{'最近': ['time_recent']}, {'偶尔': ['frequency_low'], '反复': ['frequency_high']}, {}]}
+电子医生: 了解了,然后你最近的睡眠怎么样呢？
+用户:一般，还行吧
+[('一', 'O'), ('般', 'O'), ('，', 'O'), ('还', 'O'), ('行', 'O'), ('吧', 'O')]
+ner_result: []
+电子医生: 就像是,最近会有末端失眠、睡眠过多、早短失眠等表现吗？
+用户:偶尔会有
+[('偶', 'O'), ('尔', 'O'), ('会', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'degree': '一般', 'symptom': '睡眠障碍', 'sub_symptom': ['末端失眠', '睡眠过多', '早短失眠'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['睡眠障碍'], 'other_words': [{'最近': ['time_recent']}, {'偶尔': ['frequency_low'], '反复': ['frequency_high']}, {}]}
+电子医生: 了解了,然后你最近的食欲怎么样呢？
+用户:还行吧】
+[('还', 'O'), ('行', 'O'), ('吧', 'O'), ('】', 'O')]
+ner_result: []
+电子医生: 就是说,最近会有食欲减少、食欲增加等表现吗？
+用户:没有，挺正常的
+[('没', 'O'), ('有', 'O'), ('，', 'O'), ('挺', 'O'), ('正', 'O'), ('常', 'O'), ('的', 'O')]
+ner_result: []
+diags:{'degree': '还行', 'symptom': '食欲改变', 'sub_symptom': ['食欲减少', '食欲增加'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['食欲改变'], 'other_words': [{'最近': ['time_recent']}, {'常': ['frequency_high'], '反复': ['frequency_high']}, {'挺': ['degree_deep']}]}
+电子医生: 这样的话,你的身体有没有明显的变化？
+用户:应该没有
+[('应', 'O'), ('该', 'O'), ('没', 'O'), ('有', 'O')]
+ner_result: []
+电子医生: 比如说,最近会有胳膊痛、头疼痛等表现吗？
+用户:不会
+[('不', 'O'), ('会', 'O')]
+ner_result: []
+diags:{'symptom': '疼痛', 'sub_symptom': ['胳膊痛', '头疼痛'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['疼痛'], 'other_words': [{'最近': ['time_recent']}, {'反复': ['frequency_high']}, {}]}
+电子医生: 那你在经事(限女士回答,男士否定即可)时有什么异常表现吗？
+用户:不会
+[('不', 'O'), ('会', 'O')]
+ner_result: []
+电子医生: 例如,有月经紊乱、痛经、停经、闭经等类似的感觉？
+用户:不会
+[('不', 'O'), ('会', 'O')]
+ner_result: []
+diags:{'symptom': '月经问题', 'sub_symptom': ['月经紊乱', '痛经', '停经', '闭经'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': ['月经问题'], 'other_words': [{'最近': ['time_recent']}, {'反复': ['frequency_high']}, {}]}
+电子医生: 嗯,好的.那你在头部功能时有什么异常表现吗？
+用户:没有
+
+=====================================
+20.4.8 测试结果
+
+电子医生:你可以先简单陈述你的情况。
+用户:好滴，我最近睡不着觉，经常失眠
+Building prefix dict from the default dictionary ...
+Loading model from cache C:\Users\sweet\AppData\Local\Temp\jieba.cache
+Loading model cost 0.753 seconds.
+Prefix dict has been built successfully.
+[('好', 'O'), ('滴', 'O'), ('，', 'O'), ('我', 'O'), ('最', 'O'), ('近', 'O'), ('睡', 'O'), ('不', 'O'), ('着', 'O'), ('觉', 'O'), ('，', 'O'), ('经', 'O'), ('常', 'O'), ('失', 'B-sym'), ('眠', 'E-sym')]
+ner_result: ['失眠']
+sub_symptom:失眠
+diags:{'symptom': '睡眠障碍', 'time': '最近', 'frequent': '经常'}
+words:{'keyword': ['失眠', '好滴'], 'syms_score': [1.0, 0.7077171206474304, 0.659190833568573, 0.6560655534267426, 0.6321413516998291], 'symptoms': ['失眠', '早醒', '睡眠过多', '睡眠较浅', '头痛'], 'other_words': [{'最近': ['time_recent']}, {'经常': ['frequency_high']}, {}]}
+电子医生: 好的,那么你的心情有没有明显的变化？
+用户:没有，应该还行吧
+[('没', 'O'), ('有', 'O'), ('，', 'O'), ('应', 'O'), ('该', 'O'), ('还', 'O'), ('行', 'O'), ('吧', 'O')]
+ner_result: []
+电子医生: 也就是,有没有心情不好、哭泣, 等这样的症状？
+用户:没有的
+[('没', 'O'), ('有', 'O'), ('的', 'O')]
+ner_result: []
+diags:{'degree': '还行', 'symptom': '情绪低落', 'sub_symptom': ['心情不好', '哭泣'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '情绪低落', 'sub_symptom': ['心情不好', '哭泣']}
+电子医生: 了解了,然后现在还对你以前的兴趣感兴趣吗？
+用户:还行
+[('还', 'O'), ('行', 'O')]
+ner_result: []
+电子医生: 譬如,最近会有不愿意见人、不能从平日活动中获得乐趣、喜爱的活动或事物兴趣下降、不愿见人等表现吗？
+用户:有滴，现在比较喜欢一个人独处
+[('有', 'O'), ('滴', 'O'), ('，', 'O'), ('现', 'O'), ('在', 'O'), ('比', 'O'), ('较', 'O'), ('喜', 'B-sym'), ('欢', 'E-sym'), ('一', 'O'), ('个', 'O'), ('人', 'O'), ('独', 'B-sym'), ('处', 'E-sym')]
+ner_result: ['喜欢', '独处']
+diags:{'degree': '还行', 'symptom': '兴趣减退', 'sub_symptom': ['不愿意见人', '不能从平日活动中获得乐趣', '喜爱的活动或事物兴趣下降', '不愿见人'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{'现在': ['time_recent']}, {}, {}], 'symptom': '兴趣减退', 'sub_symptom': ['不愿意见人', '不能从平日活动中获得乐趣', '喜爱的活动或事物兴趣下降', '不愿见人']}
+电子医生: 了解了,然后你最近的精神怎么样呢？
+用户:还可以
+[('还', 'O'), ('可', 'O'), ('以', 'O')]
+ner_result: []
+电子医生: 详细来说,有精力减退、能力下降等类似的感觉？
+用户:嗯嗯，总是感觉异常的疲倦
+[('嗯', 'O'), ('嗯', 'O'), ('，', 'O'), ('总', 'O'), ('是', 'O'), ('感', 'B-sym'), ('觉', 'E-sym'), ('异', 'O'), ('常', 'O'), ('的', 'O'), ('疲', 'B-sym'), ('倦', 'E-sym')]
+ner_result: ['疲倦']
+sub_symptom:疲倦
+diags:{'symptom': '精力丧失', 'sub_symptom': ['精力减退', '能力下降'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [0.8417787402868271, 0.5082413479685783], 'symptoms': ['疲倦', '失眠'], 'other_words': [{}, {'总是': ['frequency_high'], '常': ['frequency_high']}, {}], 'symptom': '精力丧失', 'sub_symptom': ['精力减退', '能力下降']}
+电子医生: 这样的话,你的决断能力有没有明显的变化？
+用户:没有吧
+[('没', 'O'), ('有', 'O'), ('吧', 'O')]
+ner_result: []
+电子医生: 譬如,会不会时常感觉踌躇、很难做决定、犹豫不决？
+用户:嗯嗯，会经常下不了决定
+[('嗯', 'O'), ('嗯', 'O'), ('，', 'O'), ('会', 'O'), ('经', 'O'), ('常', 'O'), ('下', 'O'), ('不', 'B-symdescription'), ('了', 'E-symdescription'), ('决', 'O'), ('定', 'O')]
+ner_result: []
+diags:{'symptom': '注意力降低', 'sub_symptom': ['踌躇', '很难做决定', '犹豫不决'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {'经常': ['frequency_high']}, {}], 'symptom': '注意力降低', 'sub_symptom': ['踌躇', '很难做决定', '犹豫不决']}
+电子医生: 了解了,然后你最近的自信心怎么样呢？
+用户:自己感觉很自卑
+[('自', 'B-sym'), ('己', 'E-sym'), ('感', 'B-sym'), ('觉', 'E-sym'), ('很', 'O'), ('自', 'B-sym'), ('卑', 'E-sym')]
+ner_result: ['自卑']
+sub_symptom:自卑
+电子医生: 比如说,有自我评价低、自卑等类似的感觉？
+用户:经常有
+[('经', 'O'), ('常', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'symptom': '自信心丧失', 'degree': '很', 'sub_symptom': ['自我评价低', '自卑'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {'经常': ['frequency_high']}, {}], 'symptom': '自信心丧失', 'sub_symptom': ['自我评价低', '自卑']}
+电子医生: 那感觉自己的生活意义方面最近怎样了？
+用户:没有想过
+[('没', 'O'), ('有', 'O'), ('想', 'S-sym'), ('过', 'O')]
+ner_result: []
+电子医生: 就像是,有没有过分和不适当的罪恶感、认为拖累别人、无理由自责、否定自己, 等这样的症状？
+用户:嗯嗯，有的，自己就是很自卑
+[('嗯', 'O'), ('嗯', 'O'), ('，', 'O'), ('有', 'O'), ('的', 'O'), ('，', 'O'), ('自', 'B-sym'), ('己', 'E-sym'), ('就', 'O'), ('是', 'O'), ('很', 'O'), ('自', 'B-sym'), ('卑', 'E-sym')]
+ner_result: ['自卑']
+sub_symptom:自卑
+diags:{'degree': '过', 'symptom': '自责自罪', 'sub_symptom': ['过分和不适当的罪恶感', '认为拖累别人', '无理由自责', '否定自己'], 'yesno': '有', 'time': '大部分时间'}
+words:{'keyword': ['自卑'], 'syms_score': [1.0, 0.6193991303443909, 0.5576992630958557, 0.5444687604904175], 'symptoms': ['自卑', '自责', '自责自罪', '否定自我'], 'other_words': [{}, {}, {'很': ['degree_deep']}], 'symptom': '自信心丧失', 'sub_symptom': ['过分和不适当的罪恶感', '认为拖累别人', '无理由自责', '否定自己']}
+电子医生: 这样的话,会产生想象未来计划的想法吗？
+用户:没有想过的
+[('没', 'O'), ('有', 'O'), ('想', 'O'), ('过', 'O'), ('的', 'O')]
+ner_result: []
+电子医生: 好比说,经常有前途悲观、前途暗淡等类似的想法？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'degree': '过', 'symptom': '前途问题', 'sub_symptom': ['前途悲观', '前途暗淡'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '前途问题', 'sub_symptom': ['前途悲观', '前途暗淡']}
+电子医生: 嗯嗯,明白了.有没有自残类似的感觉？
+用户:应该没有
+[('应', 'O'), ('该', 'O'), ('没', 'O'), ('有', 'O')]
+ner_result: []
+电子医生: 好比说,有想死、自杀行为、希望自己已经死去、反复出现想死等类似的感觉？
+用户:有过，尝试过杀死自己
+[('有', 'O'), ('过', 'O'), ('，', 'O'), ('尝', 'O'), ('试', 'O'), ('过', 'O'), ('杀', 'O'), ('死', 'O'), ('自', 'B-sym'), ('己', 'E-sym')]
+ner_result: []
+diags:{'symptom': '自杀', 'sub_symptom': ['想死', '自杀行为', '希望自己已经死去', '反复出现想死'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {'过': ['degree_deep']}], 'symptom': '自杀', 'sub_symptom': ['想死', '自杀行为', '希望自己已经死去', '反复出现想死']}
+电子医生: 那你的胃口有没有明显的变化？
+用户:还行，压力比较大，最近老是吃得很多
+[('还', 'O'), ('行', 'O'), ('，', 'O'), ('压', 'O'), ('力', 'O'), ('比', 'O'), ('较', 'O'), ('大', 'O'), ('，', 'O'), ('最', 'O'), ('近', 'O'), ('老', 'O'), ('是', 'O'), ('吃', 'S-sym'), ('得', 'O'), ('很', 'O'), ('多', 'O')]
+ner_result: ['吃']
+diags:{'time': '最近', 'frequent': '很多', 'degree': '还行', 'symptom': '食欲改变'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{'最近': ['time_recent']}, {'很多': ['degree_deep', 'frequency_high']}, {'还行': ['degree_shallow'], '较大': ['degree_deep']}], 'symptom': '食欲改变'}
+电子医生: 了解了,然后你最近的身体怎么样呢？
+用户:不错吧
+[('不', 'O'), ('错', 'O'), ('吧', 'O')]
+ner_result: []
+电子医生: 好比说,有没有胳膊痛、胸部疼痛、关节痛、胃痛, 等这样的症状？
+用户:会有的
+[('会', 'O'), ('有', 'O'), ('的', 'O')]
+ner_result: []
+diags:{'symptom': '疼痛', 'sub_symptom': ['胳膊痛', '胸部疼痛', '关节痛', '胃痛'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '疼痛', 'sub_symptom': ['胳膊痛', '胸部疼痛', '关节痛', '胃痛']}
+电子医生: 好的,那么你的经事(限女士回答,男士否定即可)状态还好吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+电子医生: 详细来说,有没有闭经、月经紊乱, 等这样的症状？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'symptom': '月经问题', 'sub_symptom': ['闭经', '月经紊乱'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '月经问题', 'sub_symptom': ['闭经', '月经紊乱']}
+电子医生: 嗯嗯,明白了.你在脑部功能时有什么异常表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+电子医生: 譬如,有头晕等类似的感觉？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'symptom': '头晕', 'sub_symptom': ['头晕'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '头晕', 'sub_symptom': ['头晕']}
+电子医生: 好的,那么你在体能时有什么异常表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+电子医生: 好比说,最近会有虚弱等表现吗？
+用户:没有‘
+[('没', 'O'), ('有', 'O'), ('‘', 'O')]
+ner_result: []
+diags:{'symptom': '虚弱', 'sub_symptom': ['虚弱'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '虚弱', 'sub_symptom': ['虚弱']}
+电子医生: 了解了,然后你在心口时有什么异常表现吗？
+用户: 没有
+[(' ', 'O'), ('没', 'O'), ('有', 'O')]
+ner_result: []
+电子医生: 就像,有心脏跳动快、心率过快、心慌等类似的感觉？
+用户:会有的
+[('会', 'O'), ('有', 'O'), ('的', 'O')]
+ner_result: []
+diags:{'symptom': '心脏问题', 'sub_symptom': ['心脏跳动快', '心率过快', '心慌'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '心脏问题', 'sub_symptom': ['心脏跳动快', '心率过快', '心慌']}
+电子医生: 嗯,好的.那你的胸口有没有明显的变化？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+电子医生: 就像,有胸闷、透不过气等类似的感觉？
+用户:会
+[('会', 'O')]
+ner_result: []
+diags:{'symptom': '胸闷问题', 'sub_symptom': ['胸闷', '透不过气'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '胸闷问题', 'sub_symptom': ['胸闷', '透不过气']}
+电子医生: 嗯,好的.那你最近的性生活怎么样呢？
+用户:最近没有性生活
+[('最', 'O'), ('近', 'O'), ('没', 'O'), ('有', 'O'), ('性', 'O'), ('生', 'B-sym'), ('活', 'E-sym')]
+ner_result: ['生活']
+sub_symptom:失去兴趣
+电子医生: 详细来说就是,最近会有兴趣下降、离群索居等表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'symptom': '兴趣减退', 'time': '大部分时间', 'sub_symptom': ['兴趣下降', '离群索居'], 'yesno': '有'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '兴趣减退', 'sub_symptom': ['兴趣下降', '离群索居']}
+
+电子医生: 嗯嗯,明白了.你在性生活时有什么异常表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+电子医生: 也就是,最近会有月经紊乱、感受不到快乐、阳痿、性功能障碍等表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'symptom': '性功能障碍', 'sub_symptom': ['月经紊乱', '感受不到快乐', '阳痿', '性功能障碍'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '性功能障碍', 'sub_symptom': ['月经紊乱', '感受不到快乐', '阳痿', '性功能障碍']}
+电子医生: 那你的代谢有没有明显的变化？
+用户:还可以
+[('还', 'O'), ('可', 'O'), ('以', 'O')]
+ner_result: []
+电子医生: 譬如,最近会有消化不良、便秘、肠道不适、排气等表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'symptom': '排泄不适', 'sub_symptom': ['消化不良', '便秘', '肠道不适', '排气'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '排泄不适', 'sub_symptom': ['消化不良', '便秘', '肠道不适', '排气']}
+电子医生: 那你在消化时有什么异常表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+电子医生: 详细来说就是,有没有排气、消化不良, 等这样的症状？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'symptom': '消化不适', 'sub_symptom': ['排气', '消化不良'], 'yesno': '有', 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}], 'symptom': '消化不适', 'sub_symptom': ['排气', '消化不良']}
+电子医生: 好滴,我们已经初步了解了你的情况，初步诊断请稍后......
+
+==============================================================
+
+20.4.16测试结果
+
+电子医生:你可以先简单陈述你的情况。
+用户:好滴，我最近睡不着觉，经常失眠
+[('好', 'O'), ('滴', 'O'), ('，', 'O'), ('我', 'O'), ('最', 'O'), ('近', 'O'), ('睡', 'O'), ('不', 'O'), ('着', 'O'), ('觉', 'O'), ('，', 'O'), ('经', 'O'), ('常', 'O'), ('失', 'B-sym'), ('眠', 'E-sym')]
+ner_result: ['失眠']
+ti_idf_Key: ['好滴', '失眠']
+sub_symptom:失眠
+diags:{'symptom': '睡眠障碍', 'time': '最近', 'frequent': '经常'}
+words:{'keyword': ['好滴', '失眠'], 'syms_score': [1.0, 0.7077171206474304, 0.659190833568573, 0.6560655534267426, 0.6321413516998291], 'symptoms': ['失眠', '早醒', '睡眠过多', '睡眠较浅', '头痛'], 'other_words': [{'最近': ['time_recent']}, {'经常': ['frequency_high']}, {}, {}]}
+电子医生: 了解了,然后你的情绪有什么异常表现吗？
+用户:没有，应该还行吧
+[('没', 'O'), ('有', 'O'), ('，', 'O'), ('应', 'O'), ('该', 'O'), ('还', 'O'), ('行', 'O'), ('吧', 'O')]
+ner_result: []
+diags:{'degree': '还行', 'denyword': '没有', 'symptom': '情绪低落', 'sub_symptom': ['心情不好', '哭泣'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {'还行': ['degree_shallow']}, {'没有': ['deny_word']}], 'symptom': '情绪低落'}
+电子医生: 详细来说就是,最近会有心情不好、哭泣等表现吗？
+用户:有时会有心情不好的情况
+[('有', 'O'), ('时', 'O'), ('会', 'O'), ('有', 'O'), ('心', 'B-sym'), ('情', 'E-sym'), ('不', 'B-symdescription'), ('好', 'E-symdescription'), ('的', 'O'), ('情', 'O'), ('况', 'O')]
+ner_result: ['心情', '不好']
+ti_idf_Key: ['心情', '不好']
+sub_symptom:心情不好
+diags:{'degree': '还行', 'denyword': '没有', 'symptom': '情绪低落', 'sub_symptom': ['心情不好', '哭泣'], 'time': '大部分时间'}
+words:{'syms_score': [1.0, 0.5332049205899239], 'symptoms': ['心情不好', '情绪低落'], 'other_words': [{}, {}, {}, {'不好': ['deny_word']}], 'symptom': '情绪低落', 'sub_symptom': ['心情不好', '哭泣']}
+电子医生: 了解了,然后现在还对你以前的爱好感兴趣吗？
+用户:还行，还是有在坚持
+[('还', 'O'), ('行', 'O'), ('，', 'O'), ('还', 'O'), ('是', 'O'), ('有', 'O'), ('在', 'O'), ('坚', 'B-sym'), ('持', 'E-sym')]
+ner_result: []
+diags:{'degree': '还行', 'symptom': '兴趣减退', 'sub_symptom': ['失去愉快感', '主要从事单独参与的活动', '离群索居', '不能从平日活动中获得乐趣'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {'还行': ['degree_shallow']}, {}], 'symptom': '兴趣减退'}
+电子医生: 例如,最近会有失去愉快感、主要从事单独参与的活动、离群索居、不能从平日活动中获得乐趣等表现吗？
+用户:这个的话，确实不怎么喜欢在人多的地方，更喜欢独处
+[('这', 'O'), ('个', 'O'), ('的', 'O'), ('话', 'O'), ('，', 'O'), ('确', 'O'), ('实', 'O'), ('不', 'O'), ('怎', 'O'), ('么', 'O'), ('喜', 'B-sym'), ('欢', 'E-sym'), ('在', 'O'), ('人', 'O'), ('多', 'S-symdescription'), ('的', 'O'), ('地', 'O'), ('方', 'O'), ('，', 'O'), ('更', 'O'), ('喜', 'B-sym'), ('欢', 'E-sym'), ('独', 'B-sym'), ('处', 'E-sym')]
+ner_result: ['喜欢', '喜欢', '独处']
+ti_idf_Key: ['喜欢', '独处']
+diags:{'degree': '还行', 'symptom': '兴趣减退', 'sub_symptom': ['失去愉快感', '主要从事单独参与的活动', '离群索居', '不能从平日活动中获得乐趣'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {'多': ['degree_deep'], '更': ['degree_deep']}, {}], 'symptom': '兴趣减退', 'sub_symptom': ['失去愉快感', '主要从事单独参与的活动', '离群索居', '不能从平日活动中获得乐趣']}
+电子医生: 那感觉自己的精力方面最近怎样了？
+用户:还可以
+[('还', 'O'), ('可', 'O'), ('以', 'O')]
+ner_result: []
+diags:{'symptom': '精力丧失', 'sub_symptom': ['无精打采', '疲倦', '能力下降'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {}], 'symptom': '精力丧失'}
+电子医生: 详细来说,有无精打采、疲倦、能力下降等类似的感觉吗？
+用户:会的，工作太久会有这样的症状
+[('会', 'O'), ('的', 'O'), ('，', 'O'), ('工', 'B-sym'), ('作', 'E-sym'), ('太', 'O'), ('久', 'O'), ('会', 'O'), ('有', 'O'), ('这', 'O'), ('样', 'O'), ('的', 'O'), ('症', 'B-sym'), ('状', 'E-sym')]
+ner_result: ['工作', '症状']
+ti_idf_Key: ['太久', '症状']
+sub_symptom:情绪低落
+diags:{'symptom': '精力丧失', 'sub_symptom': ['无精打采', '疲倦', '能力下降'], 'time': '大部分时间'}
+words:{'keyword': ['症状', '太久', '工作'], 'syms_score': [0.5330281953016917], 'symptoms': ['情绪低落'], 'other_words': [{}, {}, {'太': ['degree_deep']}, {}], 'symptom': '情绪低落', 'sub_symptom': ['无精打采', '疲倦', '能力下降']}
+电子医生: 嗯嗯,明白了.你最近的注意力怎么样呢？
+用户:还行吧
+[('还', 'O'), ('行', 'O'), ('吧', 'O')]
+ner_result: []
+diags:{'degree': '还行', 'symptom': '注意力降低', 'sub_symptom': ['犹豫不决', '难以集中注意力', '思维缓慢'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {'还行': ['degree_shallow']}, {}], 'symptom': '注意力降低'}
+电子医生: 就像,会不会时常感觉犹豫不决、难以集中注意力、思维缓慢？
+用户:嗯嗯，思维反应更以前比感觉慢了
+[('嗯', 'O'), ('嗯', 'O'), ('，', 'O'), ('思', 'B-sym'), ('维', 'E-sym'), ('反', 'B-sym'), ('应', 'E-sym'), ('更', 'O'), ('以', 'O'), ('前', 'O'), ('比', 'O'), ('感', 'B-sym'), ('觉', 'E-sym'), ('慢', 'S-symdescription'), ('了', 'O')]
+ner_result: ['思维', '反应', '慢']
+ti_idf_Key: ['思维', '反应']
+sub_symptom:思维缓慢
+diags:{'degree': '还行', 'symptom': '注意力降低', 'sub_symptom': ['犹豫不决', '难以集中注意力', '思维缓慢'], 'time': '大部分时间'}
+words:{'syms_score': [0.7295566101868947], 'symptoms': ['思维缓慢'], 'other_words': [{}, {}, {'更': ['degree_deep']}, {}], 'symptom': '注意力降低', 'sub_symptom': ['犹豫不决', '难以集中注意力', '思维缓慢']}
+电子医生: 嗯嗯,明白了.你的自信力有没有明显的变化？
+用户:有些自卑
+[('有', 'O'), ('些', 'O'), ('自', 'B-sym'), ('卑', 'E-sym')]
+ner_result: ['自卑']
+ti_idf_Key: ['自卑']
+sub_symptom:自卑
+diags:{'symptom': '自信心丧失', 'sub_symptom': ['自卑', '自我评价降低', '自我评价低'], 'time': '大部分时间'}
+words:{'syms_score': [1.0, 0.6193991303443909, 0.5576992630958557, 0.5444687604904175], 'symptoms': ['自卑', '自责', '自责自罪', '否定自我'], 'other_words': [{}, {}, {}, {}]}
+电子医生: 就像是,有自卑、自我评价降低、自我评价低等类似的感觉吗？
+用户:有的
+[('有', 'O'), ('的', 'O')]
+ner_result: []
+diags:{'symptom': '自信心丧失', 'sub_symptom': ['自卑', '自我评价降低', '自我评价低'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {}], 'symptom': '自信心丧失', 'sub_symptom': ['自卑', '自我评价降低', '自我评价低']}
+电子医生: 这样的话,会不会考虑生活意义？
+用户:没有吧，偶尔考虑
+[('没', 'O'), ('有', 'O'), ('吧', 'O'), ('，', 'O'), ('偶', 'O'), ('尔', 'O'), ('考', 'O'), ('虑', 'O')]
+ner_result: []
+diags:{'frequent': '偶尔', 'denyword': '没有', 'symptom': '自责自罪'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {'偶尔': ['frequency_low']}, {}, {'没有': ['deny_word']}], 'symptom': '自责自罪'}
+电子医生: 好的,那么会经常有思考自己的前途这样子的担心吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '前途问题', 'sub_symptom': ['前途悲观', '前途暗淡'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '前途问题'}
+电子医生: 好比说,有前途悲观、前途暗淡等类似的感觉吗？
+用户:有时会有这样的想法
+[('有', 'O'), ('时', 'O'), ('会', 'O'), ('有', 'O'), ('这', 'O'), ('样', 'O'), ('的', 'O'), ('想', 'B-sym'), ('法', 'E-sym')]
+ner_result: ['想法']
+ti_idf_Key: ['想法']
+sub_symptom:自杀想法
+diags:{'denyword': '没有', 'symptom': '前途问题', 'sub_symptom': ['前途悲观', '前途暗淡'], 'time': '大部分时间'}
+words:{'syms_score': [0.9117989391088486, 0.6471957564353943, 0.6234583556652069, 0.6146720498800278, 0.5987371504306793], 'symptoms': ['自杀想法', '自杀行为', '想到自杀', '自杀计划', '想要自残'], 'other_words': [{}, {}, {}, {}], 'symptom': '自杀', 'sub_symptom': ['前途悲观', '前途暗淡']}
+电子医生: 嗯嗯,明白了.试图自杀过吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '自杀', 'sub_symptom': ['想要自残', '自杀想法', '希望自己已经死去'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '自杀'}
+电子医生: 譬如,经常有想要自残、自杀想法、希望自己已经死去等类似的想法？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '自杀', 'sub_symptom': ['想要自残', '自杀想法', '希望自己已经死去'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '自杀', 'sub_symptom': ['想要自残', '自杀想法', '希望自己已经死去']}
+电子医生: 了解了,然后感觉自己的胃口方面最近怎样了？
+用户:还行
+[('还', 'O'), ('行', 'O')]
+ner_result: []
+diags:{'degree': '还行', 'symptom': '食欲改变', 'sub_symptom': ['食欲减少', '食欲增加'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {'还行': ['degree_shallow']}, {}], 'symptom': '食欲改变'}
+电子医生: 也就是,有没有食欲减少、食欲增加, 等这样的症状？
+用户:还行，正常
+[('还', 'O'), ('行', 'O'), ('，', 'O'), ('正', 'O'), ('常', 'O')]
+ner_result: []
+diags:{'degree': '还行', 'symptom': '食欲改变', 'sub_symptom': ['食欲减少', '食欲增加'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {'常': ['frequency_high']}, {'还行': ['degree_shallow']}, {}], 'symptom': '食欲改变', 'sub_symptom': ['食欲减少', '食欲增加']}
+电子医生: 好的,那么你的关节状态还好吗？
+用户:还可以
+[('还', 'O'), ('可', 'O'), ('以', 'O')]
+ner_result: []
+diags:{'symptom': '疼痛', 'sub_symptom': ['胃痛', '手臂疼痛', '脚疼痛', '眼睛疼痛'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {}], 'symptom': '疼痛'}
+电子医生: 就像是,有没有胃痛、手臂疼痛、脚疼痛、眼睛疼痛, 等这样的症状？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'symptom': '疼痛', 'sub_symptom': ['胃痛', '手臂疼痛', '脚疼痛', '眼睛疼痛'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '疼痛', 'sub_symptom': ['胃痛', '手臂疼痛', '脚疼痛', '眼睛疼痛']}
+电子医生: 这样的话,你的经事(限女士回答,男士否定即可)有什么异常表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '月经问题', 'sub_symptom': ['闭经', '痛经', '月经紊乱', '停经'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '月经问题'}
+电子医生: 比如说,有闭经、痛经、月经紊乱、停经等类似的感觉吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '月经问题', 'sub_symptom': ['闭经', '痛经', '月经紊乱', '停经'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '月经问题', 'sub_symptom': ['闭经', '痛经', '月经紊乱', '停经']}
+电子医生: 嗯嗯,明白了.感觉自己的头部功能方面最近怎样了？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '头晕', 'sub_symptom': ['头晕'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '头晕'}
+电子医生: 例如,有头晕等类似的感觉吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '头晕', 'sub_symptom': ['头晕'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '头晕', 'sub_symptom': ['头晕']}
+电子医生: 了解了,然后你最近的体力怎么样呢？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '虚弱', 'sub_symptom': ['虚弱'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '虚弱'}
+电子医生: 就像,有虚弱等类似的感觉吗？
+用户:还可以，不会有
+[('还', 'O'), ('可', 'O'), ('以', 'O'), ('，', 'O'), ('不', 'O'), ('会', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '虚弱', 'sub_symptom': ['虚弱'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'不会': ['deny_word']}], 'symptom': '虚弱', 'sub_symptom': ['虚弱']}
+电子医生: 好的,那么你最近的心口怎么样呢？
+用户:还可以吧
+[('还', 'O'), ('可', 'O'), ('以', 'O'), ('吧', 'O')]
+ner_result: []
+diags:{'symptom': '心脏问题', 'sub_symptom': ['心率很快', '心率过快', '心脏跳动快', '心慌'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {}], 'symptom': '心脏问题'}
+电子医生: 就像是,最近会有心率很快、心率过快、心脏跳动快、心慌等表现吗？
+用户:不会
+[('不', 'O'), ('会', 'O')]
+ner_result: []
+diags:{'symptom': '心脏问题', 'sub_symptom': ['心率很快', '心率过快', '心脏跳动快', '心慌'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'不会': ['deny_word']}], 'symptom': '心脏问题', 'sub_symptom': ['心率很快', '心率过快', '心脏跳动快', '心慌']}
+电子医生: 嗯,好的.那你的呼吸状态还好吗？
+用户:嗯嗯，还行
+[('嗯', 'O'), ('嗯', 'O'), ('，', 'O'), ('还', 'O'), ('行', 'O')]
+ner_result: []
+diags:{'degree': '还行', 'symptom': '胸闷问题', 'sub_symptom': ['胸闷', '透不过气'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {'还行': ['degree_shallow']}, {}], 'symptom': '胸闷问题'}
+电子医生: 譬如,有胸闷、透不过气等类似的感觉吗？
+用户:不会
+[('不', 'O'), ('会', 'O')]
+ner_result: []
+diags:{'degree': '还行', 'symptom': '胸闷问题', 'sub_symptom': ['胸闷', '透不过气'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'不会': ['deny_word']}], 'symptom': '胸闷问题', 'sub_symptom': ['胸闷', '透不过气']}
+电子医生: 好的,那么你最近的性生活怎么样呢？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '性功能障碍', 'sub_symptom': ['性欲减退', '闭经'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '性功能障碍'}
+电子医生: 详细来说就是,有性欲减退、闭经等类似的感觉吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '性功能障碍', 'sub_symptom': ['性欲减退', '闭经'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '性功能障碍', 'sub_symptom': ['性欲减退', '闭经']}
+电子医生: 嗯嗯,明白了.你的代谢有没有明显的变化？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '排泄不适', 'sub_symptom': ['恶心', '腹泻', '排气', '便秘'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '排泄不适'}
+电子医生: 例如,最近会有恶心、腹泻、排气、便秘等表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '排泄不适', 'sub_symptom': ['恶心', '腹泻', '排气', '便秘'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '排泄不适', 'sub_symptom': ['恶心', '腹泻', '排气', '便秘']}
+电子医生: 这样的话,你的消化有没有明显的变化？
+用户:正常的吧
+[('正', 'O'), ('常', 'O'), ('的', 'O'), ('吧', 'O')]
+ner_result: []
+diags:{'frequent': '常', 'symptom': '消化不适'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {'常': ['frequency_high']}, {}, {}], 'symptom': '消化不适'}
+电子医生: 好的,那么试图妄想过吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '妄想', 'sub_symptom': ['自我援引', '躯体疾病', '虚无', '被害内容的妄想'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '妄想'}
+电子医生: 譬如,最近会有自我援引、躯体疾病、虚无、被害内容的妄想等表现吗？
+用户:不会
+[('不', 'O'), ('会', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '妄想', 'sub_symptom': ['自我援引', '躯体疾病', '虚无', '被害内容的妄想'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'不会': ['deny_word']}], 'symptom': '妄想', 'sub_symptom': ['自我援引', '躯体疾病', '虚无', '被害内容的妄想']}
+电子医生: 这样的话,有没有产生幻觉？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '幻觉', 'sub_symptom': ['谴责性听幻觉', '嘲弄性听幻觉', '幻听', '没有感情色彩的幻听'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '幻觉'}
+电子医生: 例如,最近会有谴责性听幻觉、嘲弄性听幻觉、幻听、没有感情色彩的幻听等表现吗？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '幻觉', 'sub_symptom': ['谴责性听幻觉', '嘲弄性听幻觉', '幻听', '没有感情色彩的幻听'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '幻觉', 'sub_symptom': ['谴责性听幻觉', '嘲弄性听幻觉', '幻听', '没有感情色彩的幻听']}
+电子医生: 那有没有抑郁性木僵的症状？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '抑郁性木僵', 'sub_symptom': ['木僵', '一动不动', '亚木僵'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '抑郁性木僵'}
+电子医生: 譬如,有没有木僵、一动不动、亚木僵, 等这样的症状？
+用户:没有
+[('没', 'O'), ('有', 'O')]
+ner_result: []
+diags:{'denyword': '没有', 'symptom': '抑郁性木僵', 'sub_symptom': ['木僵', '一动不动', '亚木僵'], 'time': '大部分时间'}
+words:{'syms_score': [], 'symptoms': [], 'other_words': [{}, {}, {}, {'没有': ['deny_word']}], 'symptom': '抑郁性木僵', 'sub_symptom': ['木僵', '一动不动', '亚木僵']}
+电子医生: 好的,我们已经初步了解了你的情况，现正在进行诊断请稍后......
+
+
+=====================================诊断对话案例============================================
+
+电子医生:你可以先简单陈述你的情况。
+用户:好滴，我最近睡不着觉，经常失眠
+电子医生: 了解了,然后你的情绪有什么异常表现吗？
+用户:没有，应该还行吧
+电子医生: 详细来说就是,最近会有心情不好、哭泣等表现吗？
+用户:有时会有心情不好的情况
+电子医生: 了解了,然后现在还对你以前的爱好感兴趣吗？
+用户:还行，还是有在坚持
+电子医生: 例如,最近会有失去愉快感、主要从事单独参与的活动、离群索居、不能从平日活动中获得乐趣等表现吗？
+用户:这个的话，确实不怎么喜欢在人多的地方，更喜欢独处
+电子医生: 那感觉自己的精力方面最近怎样了？
+用户:还可以
+电子医生: 详细来说,有无精打采、疲倦、能力下降等类似的感觉吗？
+用户:会的，工作太久会有这样的症状
+电子医生: 嗯嗯,明白了.你最近的注意力怎么样呢？
+用户:还行吧
+电子医生: 就像,会不会时常感觉犹豫不决、难以集中注意力、思维缓慢？
+用户:嗯嗯，思维反应更以前比感觉慢了
+子医生: 嗯嗯,明白了.你的自信力有没有明显的变化？
+用户:有些自卑
+电子医生: 就像是,有自卑、自我评价降低、自我评价低等类似的感觉吗？
+用户:有的
+电子医生: 这样的话,会不会考虑生活意义？
+用户:没有吧，偶尔考虑
+电子医生: 好的,那么会经常有思考自己的前途这样子的担心吗？
+用户:没有
+电子医生: 好比说,有前途悲观、前途暗淡等类似的感觉吗？
+用户:有时会有这样的想法
+电子医生: 嗯嗯,明白了.试图自杀过吗？
+用户:没有
+电子医生: 譬如,经常有想要自残、自杀想法、希望自己已经死去等类似的想法？
+用户:没有
+电子医生: 了解了,然后感觉自己的胃口方面最近怎样了？
+用户:还行
+电子医生: 也就是,有没有食欲减少、食欲增加, 等这样的症状？
+用户:还行，正常
+电子医生: 好的,那么你的关节状态还好吗？
+用户:还可以
+电子医生: 就像是,有没有胃痛、手臂疼痛、脚疼痛、眼睛疼痛, 等这样的症状？
+用户:没有
+电子医生: 这样的话,你的经事(限女士回答,男士否定即可)有什么异常表现吗？
+用户:没有
+电子医生: 比如说,有闭经、痛经、月经紊乱、停经等类似的感觉吗？
+用户:没有
+电子医生: 嗯嗯,明白了.感觉自己的头部功能方面最近怎样了？
+用户:没有
+电子医生: 例如,有头晕等类似的感觉吗？
+用户:没有
+电子医生: 了解了,然后你最近的体力怎么样呢？
+用户:没有
+电子医生: 就像,有虚弱等类似的感觉吗？
+用户:还可以，不会有
+电子医生: 好的,那么你最近的心口怎么样呢？
+用户:还可以吧
+电子医生: 就像是,最近会有心率很快、心率过快、心脏跳动快、心慌等表现吗？
+用户:不会
+电子医生: 嗯,好的.那你的呼吸状态还好吗？
+用户:嗯嗯，还行
+电子医生: 譬如,有胸闷、透不过气等类似的感觉吗？
+用户:不会
+电子医生: 好的,那么你最近的性生活怎么样呢？
+用户:没有
+电子医生: 详细来说就是,有性欲减退、闭经等类似的感觉吗？
+用户:没有
+电子医生: 嗯嗯,明白了.你的代谢有没有明显的变化？
+用户:没有
+电子医生: 例如,最近会有恶心、腹泻、排气、便秘等表现吗？
+用户:没有
+电子医生: 这样的话,你的消化有没有明显的变化？
+用户:正常的吧
+电子医生: 好的,那么试图妄想过吗？
+用户:应该没有
+电子医生: 譬如,最近会有自我援引、躯体疾病、虚无、被害内容的妄想等表现吗？
+用户:没有
+电子医生: 这样的话,有没有产生幻觉？
+用户:偶尔会感觉有人在监视我吧
+电子医生: 例如,最近会有谴责性听幻觉、嘲弄性听幻觉、幻听、没有感情色彩的幻听等表现吗？
+用户:没有过
+电子医生: 那有没有抑郁性木僵的症状？
+用户:嗯...没有的
+电子医生: 譬如,有没有木僵、一动不动、亚木僵, 等这样的症状？
+用户:应该没有这样的症状
+电子医生: 好的,我们已经初步了解了你的情况，现正在进行诊断请稍后......
+
+
+

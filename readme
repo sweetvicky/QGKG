@@ -1,0 +1,5 @@
+环境：python3.6
+
+运行build_graph.py以后
+①访问 http://127.0.0.1:5000/index.html 可以看到echarts展示的疾病，症状，药品图谱
+②访问http://127.0.0.1:5000/index2.html 可以进行QA，问答的模板在question.txt里面，界面十分简陋
