@@ -85,7 +85,6 @@ def deal_answer():
     #     (get_q, wait_symptom, arrive_symptom, preques_infor, diag_list)
     return render_template("templates/index3.html", question=get_q,result=answer)
 
-
 @app.route('/deal_request', methods = ['GET', 'POST'])
 def deal_request():
 
