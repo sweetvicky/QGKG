@@ -63,6 +63,8 @@ class ChatBotGraph:
 
         # 获取句子正负情绪，主要用于是否输出关键词
         sentiment_result = self.apiTest.sentiment(sent)
+        for l in result_key:
+            sent = sent.replace(l,"")
 
         #获取程度词，时间词，频率词
         other_result=self.extract_answerkey.match_otheranswer(sent)
@@ -86,13 +88,29 @@ class ChatBotGraph:
         # print("end".center(54, "-"))
         return result
 
-    def ques_main(self, sent, wait_symptom, arrive_symptom, preques_infor,diag_list):
+    def ques_main(self, sent, wait_symptom, arrive_symptom, preques_infor,diag_list, down_symptom):
         answer = self.stopword
         word_result = self.word_vect(sent)
-        res_classify, preques_infor, word_result = self.classifier.classify1(word_result, preques_infor)
 
-        # res_classify, preques_infor = \
-            # self.classifier.classify(sent, preques_infor)
+        # 具有关键词的情况，直接不处理，咨询下一个症状
+        if 'keyword' in list(word_result.keys()):
+            print('keyword情况:' + str(word_result))
+            # 如果有症状的情况
+            if word_result['symptoms'] != []:
+                symptom = word_result['symptoms'][0]
+                # 判断是大症状还是小症状
+                if symptom in wait_symptom:
+                    arrive_symptom.append(symptom)
+                    wait_symptom.remove(symptom)
+                elif symptom in arrive_symptom:
+                    print('')
+                else:
+                    down_symptom.append(symptom)
+            preques_infor['question_type'] = 'new_symptom'
+            preques_infor['diagnosis_infor'] = {}
+            preques_infor['diagnosis_infor']['symptom'] = wait_symptom[0]
+
+        res_classify, preques_infor, word_result, down_symptom = self.classifier.classify1(word_result, preques_infor,down_symptom)
 
         if not res_classify:
             return answer, wait_symptom
@@ -117,7 +135,7 @@ class ChatBotGraph:
 
             # 检查是否还有需要问的症状,如果没有直接返回
             if wait_symptom == []:
-                return answer, wait_symptom, arrive_symptom, preques_infor,diag_list
+                return answer, wait_symptom, arrive_symptom, preques_infor,diag_list,down_symptom
             else:
                 # 确定咨询的症状,即为wait_symptom的第一个
                 res_classify['symptom'] = wait_symptom[0]
@@ -134,9 +152,9 @@ class ChatBotGraph:
         # final_answers = self.searcher.search_main(answers,res_sql)
 
         if not final_answers:
-            return answer, wait_symptom, arrive_symptom, preques_infor,diag_list
+            return answer, wait_symptom, arrive_symptom, preques_infor,diag_list,down_symptom
         else:
-            return final_answers, wait_symptom, arrive_symptom, preques_infor,diag_list
+            return final_answers, wait_symptom, arrive_symptom, preques_infor,diag_list,down_symptom
 
 if __name__ == '__main__':
     handler = ChatBotGraph()
@@ -146,6 +164,9 @@ if __name__ == '__main__':
                       '排泄不适', '消化不适', '妄想', '幻觉', '抑郁性木僵']
     # fit_up_symptom = ['情绪低落', '兴趣减退', '精力丧失', '注意力降低', '自信心丧失', '自责自罪', '前途问题', '自杀', '睡眠障碍', '食欲改变']
 
+    """保存已经说过的症状"""
+    down_symptom = []
+
     diag_list = {}
     diag_list['diags'] = []
     diag_list['words'] = []
@@ -153,18 +174,6 @@ if __name__ == '__main__':
     arrive_symptom = []
     # 上一个问题的类型
     preques_infor = {'question_type':'new_symptom','diagnosis_infor':{}}
-    lists = ['好滴，我最近睡不着觉，经常失眠', '没有，应该还行吧','有时会有心情不好的情况','还行，还是有在坚持', \
-             '这个的话，确实不怎么喜欢在人多的地方，更喜欢独处','还可以','嗯嗯，总是感觉异常的疲倦，工作的时候具有注意力挺困难的','嗯嗯，差不多是的', \
-             '还行吧','嗯嗯，思维反应更以前比感觉慢了','有些自卑','有的','没有吧，偶尔考虑', \
-             '没有','有时会有这样的想法','没有','没有','还行','还行，正常', \
-             '还可以', '没有', '没有', '没有', \
-             '没有', '应该没有', '没有', '还可以，不会有', '还可以吧', \
-             '不会', '嗯嗯，还行', '不会', '没有', \
-             '没有', '应该没有', '没有', '正常的吧', '没有', \
-             '嗯，应该没有', '没有', '没有', '偶尔会有这样的感觉', \
-             '没有', '应该没有', '没有特别思考过', '不是，没有这个症状', '没有', \
-             '嗯，应该没有'
-             ]
     index = 0
     flag = True
     print('电子医生:你可以先简单陈述你的情况。')
@@ -172,8 +181,8 @@ if __name__ == '__main__':
         question = input('用户:')
         # question = lists[index]
         # print('用户:', question)
-        answer,wait_symptom,arrive_symptom,preques_infor,diag_list = handler.ques_main \
-            (question, wait_symptom, arrive_symptom,preques_infor,diag_list)
+        answer,wait_symptom,arrive_symptom,preques_infor,diag_list,down_symptom = handler.ques_main \
+            (question, wait_symptom, arrive_symptom,preques_infor,diag_list,down_symptom)
         # answer=answer.replace('\xa0’, ’ ')
         index += 1
         print('电子医生:', answer)

@@ -16,21 +16,14 @@ class AnswerClassifier:
                       '排泄不适', '消化不适', '妄想', '幻觉', '抑郁性木僵']
 
     '''分类主函数'''
-    def classify1(self, word_dict, preques_infor):
-        medical_dict = self.word_analysis(word_dict)
+    def classify1(self, word_dict, preques_infor, down_symptom):
+        medical_dict,down_symptom = self.word_analysis(word_dict,down_symptom)
         data = {}
-        # if not medical_dict:
-        #     return data,  preques_infor, word_dict
 
-        #收集问句当中所涉及到的实体类型
-        # types = []
-        # for type_ in medical_dict.keys():
-        #     types += type_
         if not medical_dict:
             types = []
         else:
             types = list(medical_dict.keys())
-
 
         # 在这里开始是我需要去考虑的东西.在具有了这些东西之后,我如何进行封装。
 
@@ -59,7 +52,8 @@ class AnswerClassifier:
                 if bool(1 -('symptom' in list(prediagnosis_infor.keys()))):
                     prediagnosis_infor['symptom'] = '情绪低落'
                 medical_dict['symptom'] = prediagnosis_infor['symptom']
-                word_dict['symptom'] = medical_dict['symptom']
+                word_dict['symptoms'].append(medical_dict['symptom'])
+                word_dict['syms_score'].append(1)
                 types.append('symptom')
                 keynum += 1
             if question_type == '':
@@ -72,29 +66,13 @@ class AnswerClassifier:
                     question_type = 'spec_symptom'
                     preques_infor['question_type'] = question_type
                     # 'spec_symptom'查询要问的子症状
-                    sub_symptom = self.search('up_down_symptom', medical_dict['symptom'])
+                    sub_symptom = self.search('up_down_symptom', medical_dict['symptom'],down_symptom)
                     data['sub_symptom'] = sub_symptom
                     # 这里不能给那边进行诊断,所以我需要加入进preques_infor列表中
                     medical_dict['sub_symptom'] = sub_symptom
                     medical_dict['time'] = '大部分时间'
                     preques_infor['diagnosis_infor'] = medical_dict
 
-            # # 如果有两个以上(除症状外两个以上的词)的实体(表明可诊断)为'new_symptom',否则为'spec_symptom'
-            # if keynum >= 2 and ('frequent' in types):
-            #     # 这里要去维护已经完成的诊断列表
-            #     question_type = 'new_symptom'
-            #     preques_infor['question_type'] = question_type
-            #     preques_infor['diagnosis_infor'] = medical_dict
-            # else:
-            #     question_type = 'spec_symptom'
-            #     preques_infor['question_type'] = question_type
-            #     # 'spec_symptom'查询要问的子症状
-            #     sub_symptom = self.search('up_down_symptom', medical_dict['symptom'])
-            #     data['sub_symptom'] = sub_symptom
-            #     # 这里不能给那边进行诊断,所以我需要加入进preques_infor列表中
-            #     medical_dict ['sub_symptom'] = sub_symptom
-            #     medical_dict['time'] = '大部分时间'
-            #     preques_infor['diagnosis_infor'] = medical_dict
         elif preques_type == 'spec_symptom':
             pre_medical_dict = preques_infor['diagnosis_infor']
             for k in pre_medical_dict.keys():
@@ -116,9 +94,9 @@ class AnswerClassifier:
         # 将多个分类结果进行合并处理，组装成一个字典
         data['question_type'] = question_type
         preques_infor['question_type'] = question_type
-        return data,  preques_infor, word_dict
+        return data,  preques_infor, word_dict,down_symptom
 
-    def word_analysis(self,word_result):
+    def word_analysis(self,word_result,down_symptom):
         medical_dict = {}
         if word_result['symptoms'] != []:
             sub_symptom = word_result['symptoms'][0]
@@ -127,16 +105,17 @@ class AnswerClassifier:
             if sub_symptom in self.fit_up_symptom:
                 medical_dict['symptom'] = sub_symptom
             else:
-                symptom = self.search('down_up_symptom',sub_symptom)[0]
+                down_symptom.append(sub_symptom)
+                symptom = self.search('down_up_symptom',sub_symptom,down_symptom)[0]
                 medical_dict['symptom'] = symptom
         tmplist = ['time','frequent','degree','denyword']
         for i, word in enumerate(word_result['other_words']):
             if word != {}:
                 medical_dict[tmplist[i]] = list(word.keys())[0]
-        return medical_dict
+        return medical_dict,down_symptom
 
 
-    def search(self,sql_type, data):
+    def search(self,sql_type, data,down_symptom):
         sql = self.build_sql(sql_type, data)[0]
         ress = self.g.run(sql).data()
         keyword = ''
@@ -145,7 +124,13 @@ class AnswerClassifier:
             if len(down_symptoms) == 1:
                 symptoms_num = 1
             else:
-                symptoms_num = min(random.randint(2, len(down_symptoms)), 4)
+                # 检查子症状中是否出现过
+                for w in down_symptoms:
+                    if w in down_symptom:
+                        down_symptoms.remove(w)
+                if down_symptoms == []:
+                    down_symptoms.append(data)
+                symptoms_num = min(random.randint(1, len(down_symptoms)), 4)
                 random.shuffle(down_symptoms)
             keyword = down_symptoms[:symptoms_num]
             # select_symptoms = down_symptoms[:symptoms_num]
