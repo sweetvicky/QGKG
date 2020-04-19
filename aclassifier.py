@@ -42,12 +42,24 @@ class AnswerClassifier:
 
         if preques_type == 'new_symptom':
             keynum = len(types) - 1
-            # 首先判断有没有症状词,没有症状词，将上个问题的症状词语加上。
+            # 当患者描述了一种完整的症状，但是这种情况下可能症状会出现答非所问
             if 'symptom' in types and ('time' in types or 'frequent' in types):
+
+                if 'symptom' in list(preques_infor['diagnosis_infor'].keys()):
+                    current_symptom = preques_infor['diagnosis_infor']['symptom']
+                    if medical_dict['symptom'] != current_symptom:
+                        preques_infor['mis_num'] += 1
+                        preques_infor['mis_symptom'].append([current_symptom,medical_dict['symptom']])
+                        print("答非所问：咨询%s症状, 患者回答%s症状" %(current_symptom,medical_dict['symptom']))
+
                 # 这里要去维护已经完成的诊断列表
                 question_type = 'new_symptom'
                 preques_infor['question_type'] = question_type
                 preques_infor['diagnosis_infor'] = medical_dict
+
+
+
+            # 当患者并没有症状出现，则将对话系统设置的症状给记录下来
             elif bool(1 - ('symptom' in types)):
                 if bool(1 -('symptom' in list(prediagnosis_infor.keys()))):
                     prediagnosis_infor['symptom'] = '情绪低落'
@@ -56,6 +68,15 @@ class AnswerClassifier:
                 word_dict['syms_score'].append(1)
                 types.append('symptom')
                 keynum += 1
+            # 当患者描述了有完整的症状，但是这种情况下可能症状会出现答非所问
+            else:
+                if 'symptom' in list(preques_infor['diagnosis_infor'].keys()):
+                    current_symptom = preques_infor['diagnosis_infor']['symptom']
+                    if medical_dict['symptom'] == current_symptom:
+                        preques_infor['mis_num'] += 1
+                        preques_infor['mis_symptom'].append([current_symptom, medical_dict['symptom']])
+                        print("答非所问：咨询%s症状, 患者回答%s症状" % (current_symptom, medical_dict['symptom']))
+
             if question_type == '':
                 if 'time' in types or 'frequent' in types:
                 # 这里要去维护已经完成的诊断列表
@@ -72,12 +93,19 @@ class AnswerClassifier:
                     medical_dict['sub_symptom'] = sub_symptom
                     medical_dict['time'] = '大部分时间'
                     preques_infor['diagnosis_infor'] = medical_dict
-
         elif preques_type == 'spec_symptom':
             pre_medical_dict = preques_infor['diagnosis_infor']
+            # 这里也有可能出现答非所问
+            if 'symptom' in types:
+                if medical_dict['symptom'] != pre_medical_dict['symptom']:
+                    preques_infor['mis_num'] += 1
+                    preques_infor['mis_symptom'].append([pre_medical_dict['symptom'], medical_dict['symptom']])
+                    print("答非所问：咨询%s症状, 患者回答%s症状" % (pre_medical_dict['symptom'], medical_dict['symptom']))
+
             for k in pre_medical_dict.keys():
                 if bool(1-(k in types)) and k != 'denyword':
                     medical_dict[k] = pre_medical_dict[k]
+
             word_dict['symptom'] = medical_dict['symptom']
             word_dict['sub_symptom'] = medical_dict['sub_symptom']
             # 这种情况直接默认(可诊断)为'new_symptom', 这里要去维护已经完成的诊断列表

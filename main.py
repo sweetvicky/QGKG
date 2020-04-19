@@ -74,14 +74,6 @@ class ChatBotGraph:
         if sentiment_result[2]>0.9:#积极
             if len(final_scores)>0:#如果没有匹配到相似症状，则没有必要显示关键词
                 result['keyword'] = result_key
-                # print("关键词：",result_key)
-            # print(("相似的症状的评分: " + str(final_scores)))
-            # print(("相似的症状: " + str(res)))
-            # print("程度词，时间词，频率词:",other_result)
-        # else:
-            # print(("相似的症状的评分: " + str(final_scores)))
-            # print(("相似的症状: " + str(res)))
-            # print("程度词，时间词，频率词:",other_result)
         result['syms_score'] = final_scores
         result['symptoms'] = res
         result['other_words'] = other_result
@@ -164,16 +156,17 @@ if __name__ == '__main__':
                       '排泄不适', '消化不适', '妄想', '幻觉', '抑郁性木僵']
     # fit_up_symptom = ['情绪低落', '兴趣减退', '精力丧失', '注意力降低', '自信心丧失', '自责自罪', '前途问题', '自杀', '睡眠障碍', '食欲改变']
 
+    lists = ['最近我比较容易失眠，老是会想奇怪的东西','我最近感觉十分疲倦']
+
     """保存已经说过的症状"""
     down_symptom = []
-
     diag_list = {}
     diag_list['diags'] = []
     diag_list['words'] = []
     wait_symptom = fit_up_symptom
     arrive_symptom = []
     # 上一个问题的类型
-    preques_infor = {'question_type':'new_symptom','diagnosis_infor':{}}
+    preques_infor = {'question_type':'new_symptom','diagnosis_infor':{},'mis_num':0,'mis_symptom':[]}
     index = 0
     flag = True
     print('电子医生:你可以先简单陈述你的情况。')
